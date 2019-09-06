@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Note Taking App</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+
+      <h1>Notebook</h1>
+      <h2>Lets take a note!</h2>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <label for="note-search">Search</label>
+          <input type="search" id="note-search">
+        </div>
+        <div class="swatch-box">
+          <span class="swatch swatch-1"></span>
+          <span class="swatch swatch-2"></span>
+          <span class="swatch swatch-3"></span>
+          <span class="swatch swatch-4"></span>
+          <span class="swatch swatch-5"></span>
+        </div>
+        <div class="utility-box">
+          <div class="view-box">
+            <select id="note-view">
+              <option value="title" disabled selected>View</option>
+              <option value="compact">Compact</option>
+              <option value="minimal">Minimal</option>
+              <option value="full">Full</option>
+            </select>
+          </div>
+
+          <div class="sort-box">
+            <select id="note-sort">
+                <option value="title" disabled selected>Sort</option>
+                <option value="title">Title</option>
+                <option value="body">Body</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="toast"></div>   
+      
+      <div class="content">      
+        <div class="note-write">
+          <label for="note-title">Title</label>
+          <input type="text" id="note-title" autofocus>
+        
+          <label for="note-body">Note</label>
+          <textarea id="note-body"></textarea>
+          <div class="action-btns">
+            <button class="note-btn" data-mode="write">Write Note</button>
+            <button class="note-delete-all">Delete All</button>
+          </div>
+        </div>       
+        <div class="notes-display">Add a new Note!</div>
+      </div>  
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>

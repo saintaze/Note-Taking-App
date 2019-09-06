@@ -1,0 +1,464 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Indie+Flower|Kalam&display=swap');
+
+:root{
+  --theme-color: #bdd6f1;
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+body{
+  color: #444;
+  line-height: 1.7;
+  font-weight: normal;
+  font-family: Roboto, sans-serif;
+  font-size: 1.6rem;
+  padding: 4rem;
+  background-color: #f7f7f7;
+  font-family: 'Architects Daughter';
+}
+
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+
+h1{
+  color: #333;
+  text-align: center;
+  margin: 2rem 0 2.4rem;
+  font-size: 4.3rem;
+  font-weight: 400;
+  font-family: 'Architects Daughter';
+}
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 4.5rem;
+  font-weight: 300;
+  font-family: Kalam;
+}
+
+.swatch{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 2px;
+  margin-right: 1.3rem;
+  cursor: pointer; 
+}
+
+.swatch-1{
+  background-color: #cde694;
+  transition: all .2s;
+}
+
+.swatch-1:hover {
+   background-color:#c7e288;
+}
+
+.notes-display {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 3rem;
+}
+
+.swatch-2{
+  background-color: #fbbdbb;
+  transition: all .2s;
+}
+
+.swatch-2:hover {
+   background-color:#f9b1af;
+}
+
+.swatch-3{
+   background-color:#bdd6f1;
+   transition: all .2s;
+}
+
+.swatch-3:hover {
+   background-color:#afceef;
+}
+
+.swatch-4{
+  background-color: #ffe480;
+  transition: all .2s;
+}
+
+.swatch-4:hover {
+  background-color: #fbdf75;
+}
+
+.swatch-5{
+ background-color: #eecfff;
+  transition: all .2s;
+}
+
+.swatch-5:hover {
+ background-color: #eac8fd; 
+}
+
+.write-note {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 1rem 0;
+  font-size: 1.8rem;
+  font-family: Kalam;
+  color: #9ea2a5;
+}
+
+button {
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
+  background-color: grey;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-family: Kalam;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+.note-write{
+	display: flex;
+	flex-direction: column;
+  align-items: start;
+  margin-right: 12rem;
+}
+
+.note {
+	padding: 2.2rem 2.9rem;
+	background-color: var(--theme-color);
+	border-radius: 4px;
+	margin: 3rem 0;
+	cursor: move;
+  box-shadow: 5px 4px 5px 1px rgba(9,30,66,0.29);
+  word-break: break-word;
+  opacity: 0;
+  transition: all .1s;
+}
+
+.note h3 {
+  font-weight: 300;
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.note h4{
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin: 1.8rem 0 1.5rem;
+}
+
+.note p{
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.note button {
+  padding: .5rem 0;
+  margin-top: 1.8rem;
+  text-align: center;
+  width: 8.2rem;
+  margin-right: .3rem;
+  font-weight: 400;
+  font-size: 1.2rem;
+  letter-spacing: 0.3px;
+}
+
+.note-delete, .note-delete-all {
+  background-color: #ec5050;
+  border: 1px solid #ea4a4a;
+  transition: all .2s;
+}
+
+.note-delete-all {
+  padding: .6rem 0;
+  width: 9rem;
+}
+
+.note-delete:hover, .note-delete-all:hover{
+  background-color: #ea1313; 
+}
+
+.note-edit{
+  background-color: #4bbf6b;
+  border: 1px solid #15a915;
+  transition: all .2s;
+}
+
+
+
+button:disabled, button:disabled:hover{
+  background-color: #a09f9f;
+  cursor: not-allowed;
+  border: 1px solid #a09f9f;
+  text-shadow: 1px 1px 0px rgba(255,255,255, 0.34);
+}
+
+.note-write .note-btn {
+  padding: 0.6rem 0;
+  font-weight: 400;
+  font-size: 1.2rem;
+  width: 9rem;;
+  background-color: #3877e0;
+  border: 1px solid #3946e2;
+  margin-right: .8rem;
+  transition: all .2s;
+}
+
+.note-write .note-btn:hover {
+  background-color: #0a53ce;
+}
+
+
+.note-edit:hover {
+  background-color: #1ca91c;;
+}
+
+.drag-over{
+	border: 2px dashed #333;
+}
+
+.content  {
+  display: flex;
+  justify-content: center;
+}
+
+.content > * {
+  flex: 1;
+}
+
+.note-write > * {
+  display: block;
+  width: 100%;
+}
+
+textarea, input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #bcc6cc;
+  padding: 1rem 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  border-radius: 0;
+  transition: all .2s;
+  background-color: transparent;
+  font-family: 'Architects Daughter';
+  font-size: 1.7rem;
+  color: #444;
+  padding-left: 0;
+  transition: all .2s;
+}
+
+textarea{
+  margin-bottom: 4.2rem;
+  resize: none;
+  max-height: 35rem;
+  overflow: hidden;
+  height: 4.8rem;
+}
+
+textarea:focus, input:focus {
+   border-bottom: 2px solid var(--theme-color);
+}
+
+
+input#note-title:focus {
+  margin-bottom: 1.9rem;
+}
+
+#note-title {
+  margin-bottom: 2rem;
+}
+
+.toast {
+   padding: 0.9rem 7.1rem;
+  opacity: 0;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  top: 1.3rem;
+  left: 50%;
+  font-size: 1.9rem;
+  transform: translateX(-50%);
+  font-weight: 300;
+  font-family: Kalam;
+}
+
+.toast-write{
+  background-color: rgba(199, 251, 213, 0.9);
+  border: 1px solid rgb(126, 255, 161);
+  color: #108410;
+}
+
+.toast-delete{
+  background-color: rgba(251, 214, 214, 0.9);
+  border: 1px solid rgb(255, 188, 210);
+  color: #af4f70;
+}
+
+.toolbar, .utility-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.utility-box{
+  transform: translateY(9px);
+}
+
+.toolbar {
+  margin-bottom: 5rem;
+}
+
+label[for="note-search"]{
+  margin: 2rem 1.8rem 0 0;
+  transform: translateY(7px);
+}
+
+#note-search {
+  padding-left: 0;
+  padding-right: 0;
+  width: 15.3rem;
+}
+
+#note-search:focus {
+  padding-bottom: .9rem;
+}
+
+.search-box{
+    display: flex;
+    align-items: end;
+    transform: translateY(-8px);
+}
+
+.view-box label, .sort-box label {
+  margin-right: .2rem;
+} 
+.view-box {
+  margin-right: 1rem;
+}
+
+.swatch-box{
+  transform: translateX(-4.4rem);
+}
+
+
+select {
+  -webkit-appearance: none;
+  width: 61px;;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.4rem;
+  padding-top: 0;
+  text-align-last: center;
+  background-color: transparent;
+  border-radius: 0;
+  outline: none;
+  font-size: 1.7rem;
+  background-color: transparent;
+  font-family: Kalam;
+  cursor: pointer;
+  color: #555;
+  transition: all .2s;
+}
+
+.notes-display .note:first-child{
+  margin-top: 0;
+}
+
+
+
+@media screen and (max-width: 1140px) {
+  .content {
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .note-write {
+    margin-right: 0;
+  }
+
+  .note-btn {
+    margin-bottom: 3rem;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .swatch-box {
+    transform: translateX(9px);
+    margin: 3rem 0;
+  }
+
+  .notes-display {
+    text-align: center;
+  }
+
+  select {
+    text-align: center;
+    text-align-last: center;
+  }
+
+  .action-btns {
+    text-align: center;
+  }
+
+  .toolbar {
+    margin-bottom: 2.9rem;
+  }
+  h1 {
+    margin-bottom: 0 0 1rem;
+  }
+
+  h2 {
+    margin-bottom: 2.5rem;
+  }
+
+  option {
+    font-size: 1rem;
+  }
+
+  optgroup {
+    font-size: 1rem;
+  }
+
+  .swatch-box{
+    margin: 2rem 0;
+    line-break: .9;
+  }
+  .view-box{
+    margin-right: 1rem;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  input {
+    margin-bottom: 1rem;
+  }
+}
