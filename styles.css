@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&display=swap');
-
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Indie+Flower|Kalam&display=swap');
 
 :root{
@@ -22,7 +20,7 @@ body{
   color: #444;
   line-height: 1.7;
   font-weight: normal;
-  font-family: Roboto, sans-serif;
+  font-family: Arial;
   font-size: 1.6rem;
   padding: 4rem;
   background-color: #f7f7f7;
@@ -284,6 +282,14 @@ textarea:focus, input:focus {
    border-bottom: 2px solid var(--theme-color);
 }
 
+#note-sort .arrow {
+  margin-right: -10px !important;
+}
+
+select option{
+  color: blue;
+}
+
 
 input#note-title:focus {
   margin-bottom: 1.9rem;
@@ -484,6 +490,9 @@ select {
 
   input, textarea {
     padding: .6rem 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   text-area {
@@ -504,6 +513,7 @@ select {
 
   select{
     padding-bottom: 0;
+    width: 71px;
   }
 
   .notes-display {
@@ -512,13 +522,12 @@ select {
 
   h1 {
     font-size: 4.4rem;
-    margin: 4.6rem 0 1.5rem;
+    margin: 3.4rem 0 1.5rem;
     line-height: 1;
-}
   }
 
   h2 {
-    margin-bottom: 3.4rem;
+    margin-bottom: 2.4rem;
   }
 
   .view-box{
@@ -532,4 +541,25 @@ select {
   input {
     margin-bottom: 1rem;
   }
+
+  .content > * {
+    flex: 1;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .note {
+    padding: 2.2rem 2.4rem;
+  }
+
+  .note-write .note-btn,  .note-delete-all {
+    width: 8.7rem;
+  }
+
+  .toast {
+    width: 80%;
+    padding: .9rem 0;
+  }
+
 }

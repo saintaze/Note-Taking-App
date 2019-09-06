@@ -39,30 +39,30 @@ let view = 'full';
 const renderToast = (action) => {
   const toast = q('.toast')
   if (action === 'edit') {
-    toast.innerText = 'Note Edited Successfully!';
+    toast.innerText = 'Note Edited Successfully! :)';
     toast.classList.add('toast-write');
     toast.classList.remove('toast-delete');
   }
   if (action === 'write') {
-    toast.innerText = 'Note Added Successfully!';
+    toast.innerText = 'Note Added Successfully! :)';
     toast.classList.add('toast-write');
     toast.classList.remove('toast-delete');
   }
   if (action === 'delete') {
-    toast.innerText = 'Note Deleted Successfully!';
+    toast.innerText = 'Note Deleted Successfully! :(';
     toast.classList.add('toast-delete');
     toast.classList.remove('toast-write');
   }
   if (action === 'deleteAll') {
-    toast.innerText = 'All Notes Deleted Successfully!';
+    toast.innerText = 'All Notes Deleted Successfully! :(';
     toast.classList.add('toast-delete');
     toast.classList.remove('toast-write');
 
   }
   toast.style.opacity = 1;
   setTimeout(() => {
-    toast.innerText = '';
-    toast.style.opacity = 0;
+    // toast.innerText = '';
+    // toast.style.opacity = 0;
   }, 1600);
 }
 
@@ -84,14 +84,16 @@ q('#note-sort').addEventListener('change', e => {
   renderNotes(notes, view);
 })
 
+q('textarea').style.height = '32px';
+
 q('textarea').addEventListener('input', (e) => {
   // e.target.style.height = 'auto';
   e.target.style.height = e.target.scrollHeight + 'px';
 });
 
 q('#note-view').addEventListener('change', e => {
-  if (notes.length === 0) return;
   view = e.target.value;
+  if (notes.length === 0) return;
   renderNotes(notes, view);
 })
 
@@ -162,7 +164,6 @@ const scrollToElement = (mode) => {
     top = q('[id="' + editedNoteId + '"]').getBoundingClientRect().top;
   }
   window.scrollBy({ top: top, behavior: 'smooth' });
-  // setTimeout(() => { window.scroll({ top, behavior: 'smooth' }); }, 1);
 }
 
 const editUpdateDisplay = (noteId) => {
