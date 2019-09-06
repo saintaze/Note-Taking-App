@@ -107,6 +107,7 @@ const clearFields = () => {
 
 const writeNote = () => {
   const noteTitle = q('#note-title');
+  if (noteTitle.value.trim() === '') return
   const noteBody = q('#note-body');
   const note = new Note(noteTitle.value, noteBody.value, getCurrentDate());
   notes.unshift(note)
@@ -143,8 +144,10 @@ const renderNotes = (notes, view) => {
 }
 
 const deleteNote = (noteId) => {
-  notes.splice(noteId, 1);
-  renderToast('delete');
+  if (confirm('Are you sure you want to delete this note?')) {
+    notes.splice(noteId, 1);
+    renderToast('delete');
+  }
   notes.length > 0 ? renderNotes(notes, view) : renderAddNoteMessage();
 }
 
@@ -158,7 +161,8 @@ const scrollToElement = (mode) => {
     const editedNoteId = q('.note-btn').dataset.noteid;
     top = q('[id="' + editedNoteId + '"]').getBoundingClientRect().top;
   }
-  window.scroll({ top, behavior: 'smooth' });
+  window.scrollBy({ top: top, behavior: 'smooth' });
+  // setTimeout(() => { window.scroll({ top, behavior: 'smooth' }); }, 1);
 }
 
 const editUpdateDisplay = (noteId) => {
@@ -174,6 +178,7 @@ const editUpdateDisplay = (noteId) => {
 }
 
 const deleteAllNotes = () => {
+  if(notes.length === 0) return;
   if (confirm('Are you sure you want to delete all notes?')) {
     notes.length = 0;
     renderAddNoteMessage();

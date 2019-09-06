@@ -27,6 +27,7 @@ body{
   padding: 4rem;
   background-color: #f7f7f7;
   font-family: 'Architects Daughter';
+  transition: all 5s;
 }
 
 .container {
@@ -390,7 +391,7 @@ select {
 
 
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 950px) {
   .content {
     flex-direction: column;
     max-width: 500px;
@@ -432,25 +433,94 @@ select {
     margin-bottom: 2.9rem;
   }
   h1 {
-    margin-bottom: 0 0 1rem;
+    margin: 0 0 1rem;
   }
 
   h2 {
     margin-bottom: 2.5rem;
   }
 
-  option {
-    font-size: 1rem;
-  }
-
-  optgroup {
-    font-size: 1rem;
-  }
-
   .swatch-box{
     margin: 2rem 0;
     line-break: .9;
   }
+  .view-box{
+    margin-right: 1rem;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  input {
+    margin-bottom: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 430px) {
+  :root{
+    font-size: 9px;
+  }
+  
+  body {
+    padding-top: 0.5rem;
+    padding-bottom: 2.8rem;
+  }
+
+  .swatch{
+    width: 32px;
+    height: 32px;
+    margin-right: 1.1rem;
+  }
+
+  .swatch-box {
+    margin: 0.8rem 0 0.3px;
+  }
+
+  .note-write label {
+    line-height: 1;
+  }
+
+  input, textarea {
+    padding: .6rem 0;
+  }
+
+  text-area {
+    margin-bottom: 3.4rem;
+  }
+
+  label[for="note-search"]{
+    transform: translateY(-4px);
+  }
+
+  .note-btn {
+    margin-bottom: 1.2px;
+  }
+
+  .toolbar{
+    margin-bottom: 2.4rem;
+  }
+
+  select{
+    padding-bottom: 0;
+  }
+
+  .notes-display {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 4.4rem;
+    margin: 4.6rem 0 1.5rem;
+    line-height: 1;
+}
+  }
+
+  h2 {
+    margin-bottom: 3.4rem;
+  }
+
   .view-box{
     margin-right: 1rem;
   }
