@@ -121,7 +121,7 @@ label {
   margin: 1rem 0;
   font-size: 1.8rem;
   font-family: Kalam;
-  color: #9ea2a5;
+  color: #555 /* #9ea2a5; */
 }
 
 button {
