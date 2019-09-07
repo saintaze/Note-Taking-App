@@ -1,6 +1,4 @@
-// setTimeout(() => {
-//   document.querySelector('body').style.opacity = 1
-// }, 1000);
+
 const swatches = document.querySelectorAll('.swatch');
 const root = document.querySelector(':root');
 
@@ -79,15 +77,16 @@ const renderToast = (action) => {
   }
   toast.style.opacity = 1;
   setTimeout(() => {
-    // toast.innerText = '';
-    // toast.style.opacity = 0;
+    toast.innerText = '';
+    toast.style.opacity = 0;
   }, 1600);
 }
 
 q('.note-btn').addEventListener('click', (e) => {
   const mode = e.target.dataset.mode;
-  mode === 'write' ? writeNote() : editNote();
-  clearFields()
+  let canClearFields = false;
+  canClearFields = mode === 'write' ? writeNote() : editNote();
+  if (canClearFields) clearFields()
   renderNotes(notes, view);
 });
 
@@ -131,13 +130,17 @@ const clearFields = () => {
 const writeNote = () => {
   const noteTitle = q('#note-title');
   const noteBody = q('#note-body');
-  if (noteBody.value.trim().length !== '' && noteTitle.value.trim() === '') return renderToast('invalid');
-  if (noteTitle.value.trim() === '') return;
+  if (noteBody.value.trim().length !== '' && noteTitle.value.trim() === '') {
+    renderToast('invalid');
+    return false
+  }
+  if (noteTitle.value.trim() === '') return false;
   const note = new Note(noteTitle.value, noteBody.value, getCurrentDate());
   notes.unshift(note);
   localStore('set');
   q('.note-btn').dataset.mode = "write";
   renderToast('write');
+  return true
 }
 
 const renderNotes = (notes, view) => {
@@ -231,6 +234,7 @@ const editNote = () => {
   toggleDelEditBtns('write');
   scrollToElement('write');
   renderToast('edit');
+  return true
 }
 
 const searchNote = (searchTerm) => {
