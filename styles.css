@@ -327,9 +327,9 @@ input#note-title:focus {
 }
 
 .toast-invalid{
-    background-color: rgba(249, 255, 182, 0.9);
+  background-color: rgba(249, 255, 182, 0.9);
     border: 1px solid rgb(249, 238, 179);;
-    color: #e49b09;;
+    color: orange;
 }
 
 .toolbar, .utility-box {

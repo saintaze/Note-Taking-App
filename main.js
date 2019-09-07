@@ -34,9 +34,17 @@ const getCurrentDate = () => {
 const q = el => document.querySelector(el);
 const qa = el => document.querySelectorAll(el);
 
-
-const notes = [];
-let view = 'full';
+const localStore = (mode) => {
+  if (mode === 'set') {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }
+  if (mode === 'get') {
+    return JSON.parse(localStorage.getItem('notes'));
+  }
+  if (mode === 'clear') {
+    localStorage.clear();
+  }
+}
 
 const renderToast = (action) => {
   const toast = q('.toast')
@@ -56,7 +64,7 @@ const renderToast = (action) => {
     toast.innerText = 'Note Deleted Successfully! :(';
     toast.classList.add('toast-delete');
     toast.classList.remove('toast-write');
-    toast.classList.remove('toast-invalid');
+    toast.classList.remove('toast-invalid'); 
   }
   if (action === 'deleteAll') {
     toast.innerText = 'All Notes Deleted Successfully! :(';
@@ -64,7 +72,7 @@ const renderToast = (action) => {
     toast.classList.remove('toast-write');
     toast.classList.remove('toast-invalid');
   }if (action === 'invalid') {
-    toast.innerText = 'Add Note Title! :|';
+    toast.innerText = 'Happy if you Add Note Title! :|';
     toast.classList.add('toast-invalid');
     toast.classList.remove('toast-delete');
     toast.classList.remove('toast-write');
@@ -112,17 +120,6 @@ q('.note-delete-all').addEventListener('click', e => {
   deleteAllNotes();
 })
 
-const localStore = (mode) => {
-  if(mode === 'set'){
-    localStorage.setItem('notes', JSON.stringify(notes));
-  }
-  if (mode === 'get') {
-    return JSON.parse(localStorage.getItem('notes'));
-  }
-  if (mode === 'clear') {
-    localStorage.clear();
-  }
-}
 
 const clearFields = () => {
   q('#note-title').value = '';
@@ -137,15 +134,11 @@ const writeNote = () => {
   if (noteBody.value.trim().length !== '' && noteTitle.value.trim() === '') return renderToast('invalid');
   if (noteTitle.value.trim() === '') return;
   const note = new Note(noteTitle.value, noteBody.value, getCurrentDate());
-  notes.unshift(note)
+  notes.unshift(note);
+  localStore('set');
   q('.note-btn').dataset.mode = "write";
   renderToast('write');
 }
-
-const validateInput = ()=>{
-
-}
-
 
 const renderNotes = (notes, view) => {
   let notesDisplay = '';
@@ -177,6 +170,7 @@ const renderNotes = (notes, view) => {
 const deleteNote = (noteId) => {
   if (confirm('Are you sure you want to delete this note?')) {
     notes.splice(noteId, 1);
+    localStore('set');
     renderToast('delete');
   }
   notes.length > 0 ? renderNotes(notes, view) : renderAddNoteMessage();
@@ -211,6 +205,7 @@ const deleteAllNotes = () => {
   if(notes.length === 0) return;
   if (confirm('Are you sure you want to delete all notes?')) {
     notes.length = 0;
+    localStore('clear');
     renderAddNoteMessage();
     renderToast('deleteAll');
   }
@@ -230,6 +225,7 @@ const editNote = () => {
   const noteId = q('.note-btn').dataset.noteid;
   notes[noteId].title = q('#note-title').value;
   notes[noteId].body = q('#note-body').value;
+  localStore('set');
   noteBtn.innerText = 'Write Note';
   noteBtn.dataset.mode = 'write';
   toggleDelEditBtns('write');
@@ -318,4 +314,10 @@ const toggleDelEditBtns = (mode) => {
     delBtns[i].disabled = disable;;
   });
   delAllBtn.disabled = disable;;
+}
+
+const notes = localStore('get') || [];
+let view = 'full';
+if (notes.length !== 0) {
+  renderNotes(notes, view)
 }
