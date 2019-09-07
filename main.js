@@ -1,4 +1,6 @@
-
+// setTimeout(() => {
+//   document.querySelector('body').style.opacity = 1
+// }, 1000);
 const swatches = document.querySelectorAll('.swatch');
 const root = document.querySelector(':root');
 
@@ -42,22 +44,30 @@ const renderToast = (action) => {
     toast.innerText = 'Note Edited Successfully! :)';
     toast.classList.add('toast-write');
     toast.classList.remove('toast-delete');
+    toast.classList.remove('toast-invalid');
   }
   if (action === 'write') {
     toast.innerText = 'Note Added Successfully! :)';
     toast.classList.add('toast-write');
     toast.classList.remove('toast-delete');
+    toast.classList.remove('toast-invalid');
   }
   if (action === 'delete') {
     toast.innerText = 'Note Deleted Successfully! :(';
     toast.classList.add('toast-delete');
     toast.classList.remove('toast-write');
+    toast.classList.remove('toast-invalid');
   }
   if (action === 'deleteAll') {
     toast.innerText = 'All Notes Deleted Successfully! :(';
     toast.classList.add('toast-delete');
     toast.classList.remove('toast-write');
-
+    toast.classList.remove('toast-invalid');
+  }if (action === 'invalid') {
+    toast.innerText = 'Add Note Title! :|';
+    toast.classList.add('toast-invalid');
+    toast.classList.remove('toast-delete');
+    toast.classList.remove('toast-write');
   }
   toast.style.opacity = 1;
   setTimeout(() => {
@@ -102,19 +112,38 @@ q('.note-delete-all').addEventListener('click', e => {
   deleteAllNotes();
 })
 
+const localStore = (mode) => {
+  if(mode === 'set'){
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }
+  if (mode === 'get') {
+    return JSON.parse(localStorage.getItem('notes'));
+  }
+  if (mode === 'clear') {
+    localStorage.clear();
+  }
+}
+
 const clearFields = () => {
   q('#note-title').value = '';
-  q('#note-body').value = '';
+  const textarea = q('#note-body');
+  textarea.value = '';
+  textarea.style.height = '32px'; 
 }
 
 const writeNote = () => {
   const noteTitle = q('#note-title');
-  if (noteTitle.value.trim() === '') return
   const noteBody = q('#note-body');
+  if (noteBody.value.trim().length !== '' && noteTitle.value.trim() === '') return renderToast('invalid');
+  if (noteTitle.value.trim() === '') return;
   const note = new Note(noteTitle.value, noteBody.value, getCurrentDate());
   notes.unshift(note)
   q('.note-btn').dataset.mode = "write";
   renderToast('write');
+}
+
+const validateInput = ()=>{
+
 }
 
 
@@ -221,6 +250,9 @@ const searchNote = (searchTerm) => {
 }
 
 const initDragNDrop = () => {
+
+  if(('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) return;
+
   let srcEl = null;
   qa('.note').forEach(note => {
 
