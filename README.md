@@ -9,6 +9,7 @@ An app for taking notes.
 + Sort available through note title or body.
 + Full CRUD functionality.
 + Responsive Design.
++ Local Storage to persist data on front end.
 
 ##### Built With
 + HTML5
