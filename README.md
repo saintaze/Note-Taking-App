@@ -18,7 +18,7 @@ An app for taking notes.
 # Live Version
 #### URL: [Start Taking Notes](https://note-taking.ayezahmed.now.sh )
 
-# Authors
-+ Saintaze [@saintaze](https://github.com/saintaze/)
+# Author
+Saintaze [@saintaze](https://github.com/saintaze/)
 
 
